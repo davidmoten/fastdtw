@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public final class WarpPath {
-    private List<Integer> tsIindexes;   // ArrayList of Integer
-    private List<Integer> tsJindexes;   // ArrayList of Integer
+    private final List<Integer> tsIindexes;
+    private final List<Integer> tsJindexes;
 
     private WarpPath(List<Integer> tsIindexes, List<Integer> tsJindexes) {
         this.tsIindexes = tsIindexes;
