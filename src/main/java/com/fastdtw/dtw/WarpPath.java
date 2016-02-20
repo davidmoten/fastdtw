@@ -38,7 +38,6 @@ public final class WarpPath {
         return tsIindexes.get(tsIindexes.size() - 1);
     }
 
-
     public int minJ() {
         return tsJindexes.get(tsJindexes.size() - 1);
     }
@@ -46,7 +45,6 @@ public final class WarpPath {
     public int maxI() {
         return tsIindexes.get(0);
     }
-
 
     public int maxJ() {
         return tsJindexes.get(0);
@@ -62,18 +60,16 @@ public final class WarpPath {
         tsJindexes.add(0, j);
     }
 
-
     public List<Integer> getMatchingIndexesForI(int i) {
         int index = tsIindexes.indexOf(i);
         if (index < 0)
             throw new InternalError("ERROR:  index '" + i + " is not in the " + "warp path.");
-        final List<Integer>  matchingJs = new ArrayList<Integer>(tsIindexes.size());
+        final List<Integer> matchingJs = new ArrayList<Integer>(tsIindexes.size());
         while (index < tsIindexes.size() && tsIindexes.get(index) == i)
             matchingJs.add(tsJindexes.get(index++));
 
         return matchingJs;
     }
-
 
     public List<Integer> getMatchingIndexesForJ(int j) {
         int index = tsJindexes.indexOf(j);
@@ -86,7 +82,6 @@ public final class WarpPath {
         return matchingIs;
     }
 
-
     // Create a new WarpPath that is the same as THIS WarpPath, but J is the reference template, rather than I.
     public WarpPath invertedCopy() {
         final WarpPath newWarpPath = new WarpPath();
@@ -95,7 +90,6 @@ public final class WarpPath {
 
         return newWarpPath;
     }
-
 
     // Swap I and J so that the warp path now indicates that J is the template rather than I.
     public void invert() {
@@ -106,7 +100,6 @@ public final class WarpPath {
         }
     }
 
-
     public ColMajorCell get(int index) {
         if ((index > this.size()) || (index < 0))
             throw new NoSuchElementException();
@@ -114,7 +107,7 @@ public final class WarpPath {
             return new ColMajorCell(tsIindexes.get(tsIindexes.size() - index - 1), tsJindexes.get(tsJindexes.size() - index - 1));
     }
 
-
+    @Override
     public String toString() {
         StringBuilder outStr = new StringBuilder("[");
         for (int x = 0; x < tsIindexes.size(); x++) {
@@ -128,6 +121,7 @@ public final class WarpPath {
     }
 
 
+    @Override
     public boolean equals(Object obj) {
         if ((obj instanceof WarpPath))  // trivial false test
         {
@@ -146,7 +140,7 @@ public final class WarpPath {
             return false;
     }
 
-
+    @Override
     public int hashCode() {
         return tsIindexes.hashCode() * tsJindexes.hashCode();
     }
